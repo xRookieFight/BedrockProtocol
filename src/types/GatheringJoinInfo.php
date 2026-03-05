@@ -27,6 +27,8 @@ final class GatheringJoinInfo{
 		private string $experienceWorldName,
 		private string $creatorId,
 		private string $storeId,
+		private string $unk,
+		private string $serverId
 	){}
 
 	public function getExperienceId() : string{ return $this->experienceId; }
@@ -40,6 +42,8 @@ final class GatheringJoinInfo{
 	public function getCreatorId() : string{ return $this->creatorId; }
 
 	public function getStoreId() : string{ return $this->storeId; }
+	public function getUnk() : string{ return $this->unk; }
+	public function getServerId() : string{ return $this->serverId; }
 
 	public static function read(ByteBufferReader $in) : self{
 		$experienceId = CommonTypes::getString($in);
@@ -48,6 +52,8 @@ final class GatheringJoinInfo{
 		$experienceWorldName = CommonTypes::getString($in);
 		$creatorId = CommonTypes::getString($in);
 		$storeId = CommonTypes::getString($in);
+		$unk = CommonTypes::getString($in);
+		$serverId = CommonTypes::getString($in);
 
 		return new self(
 			$experienceId,
@@ -55,7 +61,9 @@ final class GatheringJoinInfo{
 			$experienceWorldId,
 			$experienceWorldName,
 			$creatorId,
-			$storeId
+			$storeId,
+			$unk,
+			$serverId
 		);
 	}
 
@@ -66,5 +74,7 @@ final class GatheringJoinInfo{
 		CommonTypes::putString($out, $this->experienceWorldName);
 		CommonTypes::putString($out, $this->creatorId);
 		CommonTypes::putString($out, $this->storeId);
+		CommonTypes::putString($out, $this->unk);
+		CommonTypes::putString($out, $this->serverId);
 	}
 }

@@ -43,6 +43,7 @@ class UseItemTransactionData extends TransactionData{
 	private Vector3 $clickPosition;
 	private int $blockRuntimeId;
 	private PredictedResult $clientInteractPrediction;
+	private int $clientCooldownState;
 
 	public function getActionType() : int{
 		return $this->actionType;
@@ -79,6 +80,7 @@ class UseItemTransactionData extends TransactionData{
 	}
 
 	public function getClientInteractPrediction() : PredictedResult{ return $this->clientInteractPrediction; }
+	public function getClientCooldownState() : int{ return $this->clientCooldownState; }
 
 	protected function decodeData(ByteBufferReader $in) : void{
 		$this->actionType = VarInt::readUnsignedInt($in);
